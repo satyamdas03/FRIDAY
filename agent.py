@@ -23,7 +23,6 @@ class Assistant(agents.Agent):
             tools=[query_aws_guide, search_web, send_email],
         )
 
-
 async def entrypoint(ctx: agents.JobContext):
     # 1) Connect the worker
     await ctx.connect()
@@ -34,15 +33,14 @@ async def entrypoint(ctx: agents.JobContext):
     if phone_number:
         await make_call(room_name, phone_number)
 
-    # 3) Start the voice session
+    # 3) Start the voice session using telephony-optimized noise cancellation
     session = AgentSession()
     await session.start(
         agent=Assistant(),
         room=ctx.room,
         room_input_options=RoomInputOptions(
             video_enabled=False,
-            # optional Krisp/BVC noise cancellation on the call
-            noise_cancellation=noise_cancellation.BVC(),
+            noise_cancellation=noise_cancellation.BVCTelephony(),
         ),
     )
 
@@ -50,9 +48,8 @@ async def entrypoint(ctx: agents.JobContext):
     if not phone_number:
         await session.generate_reply(instructions=SESSION_INSTRUCTION)
 
-
 if __name__ == "__main__":
     agents.cli.run_app(WorkerOptions(
         entrypoint_fnc=entrypoint,
-        agent_name="Friday"    # explicit dispatch name
+        agent_name="Friday"
     ))
