@@ -1,9 +1,7 @@
 {
-    "trunk": {
-        "name": "My Inbound Trunk",
-        "numbers": [
-            "+1-510-555-0100"
-        ],
-        "krisp_enabled": true
-    }
+    "name": "My Inbound Trunk",
+    "numbers": [
+        "+19387772603"
+    ],
+    "krisp_enabled": true
 }

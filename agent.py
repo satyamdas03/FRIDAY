@@ -18,7 +18,7 @@ class Assistant(agents.Agent):
             instructions=AGENT_INSTRUCTION,
             stt=deepgram.STT(),
             llm=openai.LLM(model="gpt-4o", temperature=0.5),
-            tts=openai.TTS(voice="Aoede"),
+            tts=openai.TTS(voice="alloy"),
             vad=silero.VAD.load(),
             tools=[query_aws_guide, search_web, send_email],
         )
