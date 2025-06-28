@@ -20,6 +20,8 @@ python-dotenv = "^1.1.1"
 pypdf = "^5.6.1"
 langchain-openai = "^0.3.27"
 faiss-cpu = "^1.11.0"
+livekit-plugins-deepgram = ">=1.1.4,<1.2.0"
+livekit-api = "^1.0.3"
 
 
 [build-system]
