@@ -1,0 +1,33 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My name is Satyam Das. My email is satyamdas0@gmail.com.
+ASSISTANT: Great to meet you, Satyam Das! I'll make a note of your email: s.a.t.y.a.m.d.a.s.0 at gmail dot com. 
+
+What cloud challenges are top-of-mind for you right now?
+USER: Yeah, so my company is running a high IO workload on a storage optimizing pen, but is unsure if it's cost effective.
+USER: So I would like to know how you would identify whether the instance type is over provisioned and
+USER: I would like you to recommend a more appropriate instance for a strong .
+USER: What is your opinion?
+ASSISTANT: Gotcha, Satyam. Well, to determine if your instance type is over-provisioned, we can start by analyzing a few key metrics:
+
+1. **CPU Utilization**: Check if the CPU usage is consistently low. If it's below 40% most of the time, you might be over-provisioned.
+
+2. **Memory Utilization**: Similarly, if the memory usage is low, it could indicate that you're not using the full capacity.
+
+3. **Network and Disk IO**: Since you mentioned high IO workloads, monitor the network and disk IO metrics. If they are high, but CPU and memory are low, you might need a different instance type that offers better IO performance.
+
+4. **CloudWatch Metrics**: Use AWS CloudWatch to gather detailed metrics over time to see the trends.
+
+### Recommendations:
+- **General Purpose Instances**: If your workload varies,
+USER: Okay, okay, fine, fine, fine.
+USER: Can you send me an email to
+USER: satyam.dhar2021@vitstudent.ac.in.
+USER: The pronunciation is S A T Y A M dot D A S.
+USER: 2021@vitstutent.ac.in.
+USER: the subject of this  mail should be the detailed conversation which we had.
+USER: And sorry, the subject will be high.
+USER: And uh,
+USER: Body will be the detailed conversation that we have.
+ASSISTANT: I've sent the email to s.a.t.y.a.m.d.a.s.2021 at vitstudent dot ac dot in with the subject "High IO Workload Optimization." Let me know if there's anything else you need!
+USER: No, thank you, that is all.
+ASSISTANT: Alright, thank you, Satyam! If
