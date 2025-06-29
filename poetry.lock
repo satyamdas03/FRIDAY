@@ -1585,6 +1585,21 @@ openai = {version = ">=1.84.0", extras = ["realtime"]}
 vertex = ["google-auth (>=2.0.0)"]
 
 [[package]]
+name = "livekit-plugins-sarvam"
+version = "1.1.4"
+description = "Agent Framework plugin for services using Sarvam.ai's API."
+optional = false
+python-versions = ">=3.9.0"
+files = [
+    {file = "livekit_plugins_sarvam-1.1.4-py3-none-any.whl", hash = "sha256:749e524d05522be1891f6187d386299b4140fbac708a40a9d039d09dca8411ec"},
+    {file = "livekit_plugins_sarvam-1.1.4.tar.gz", hash = "sha256:1781514413cae4e938cf58b5e1a88e576d7a0ca11e0a93b0e445c2b446a4a439"},
+]
+
+[package.dependencies]
+livekit-agents = {version = ">=1.1.4", extras = ["codecs"]}
+numpy = ">=1.26"
+
+[[package]]
 name = "livekit-plugins-silero"
 version = "1.1.4"
 description = "Agent Framework Plugin for Silero"
@@ -3754,4 +3769,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "4eaa5c5f7658c2e93bf95b3ce545d6b58670e27de43583b467eff06b23ad2456"
+content-hash = "d60f9819dd4730ec83620924c8ad177cf5fd075f81740d419d8610c06221aa16"

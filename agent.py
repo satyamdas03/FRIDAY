@@ -1,64 +1,76 @@
-from __future__ import annotations
-
-import logging
-from pathlib import Path
+import os
+import json
 from dotenv import load_dotenv
 
-from livekit import rtc
-from livekit.agents import AutoSubscribe, JobContext, WorkerOptions, cli
-from livekit.agents.voice import Agent, AgentSession
-from livekit.agents import RoomInputOptions
-from livekit.plugins import openai, deepgram, silero, noise_cancellation
+from livekit import agents
+from livekit.agents import AgentSession, WorkerOptions, RoomInputOptions
+from livekit.plugins import (
+    openai,
+    silero,
+    noise_cancellation,
+    sarvam,          
+)
 
 from prompts import AGENT_INSTRUCTION, SESSION_INSTRUCTION
 from tools import query_aws_guide, search_web, send_email
+from make_call import make_call
 
-load_dotenv(dotenv_path=Path(__file__).parent / ".env")
+load_dotenv()
 
-logger = logging.getLogger("friday-agent")
-logger.setLevel(logging.INFO)
 
-class FridayAgent(Agent):
+class Assistant(agents.Agent):
     def __init__(self) -> None:
         super().__init__(
             instructions=AGENT_INSTRUCTION,
-            stt=deepgram.STT(),
+            # Use Sarvam for STT (auto-detect if you leave language empty, 
+            # or pin it to one code like "hi-IN", "bn-IN", etc.)
+            stt=sarvam.STT(
+                language=os.getenv("SARVAM_STT_LANG", "hi-IN"),
+                model=os.getenv("SARVAM_STT_MODEL", "saarika:v2.5"),
+            ),
+            # LLM stays on OpenAI
             llm=openai.LLM(model="gpt-4o", temperature=0.5),
-            tts=openai.TTS(voice="alloy"),
+            # Use Sarvam TTS in the same language
+            tts=sarvam.TTS(
+                target_language_code=os.getenv("SARVAM_TTS_LANG", "hi-IN"),
+                model=os.getenv("SARVAM_TTS_MODEL", "bulbul:v2"),
+                speaker=os.getenv("SARVAM_SPEAKER", "anushka"),
+            ),
             vad=silero.VAD.load(),
             tools=[query_aws_guide, search_web, send_email],
         )
 
-    async def on_enter(self):
-        # greet the caller immediately
-        await self.session.generate_reply(instructions=SESSION_INSTRUCTION)
 
-async def entrypoint(ctx: JobContext):
-    logger.info(f"connecting to room {ctx.room.name}")
+async def entrypoint(ctx: agents.JobContext):
+    # 1) Connect the worker
+    await ctx.connect()
 
-    # join only audio so we can “answer” the SIP call
-    await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
+    # 2) If TARGET_PHONE_NUMBER is set, place an outbound call
+    room_name = ctx.room.name
+    phone_number = os.getenv("TARGET_PHONE_NUMBER")
+    if phone_number:
+        await make_call(room_name, phone_number)
 
-    # wait for the caller (SIP participant)
-    participant = await ctx.wait_for_participant()
-    logger.info(f"caller joined: {participant.identity}")
-
-    # kick off an AgentSession to handle the voice convo
+    # 3) Start the voice session—
+    #    Sarvam will now transcribe and speak in your chosen language(s).
     session = AgentSession()
     await session.start(
-        agent=FridayAgent(),
+        agent=Assistant(),
         room=ctx.room,
         room_input_options=RoomInputOptions(
             video_enabled=False,
+            # Krisp noise-cancellation for telephony
             noise_cancellation=noise_cancellation.BVCTelephony(),
         ),
     )
-    logger.info("agent session started")
+
+    # 4) Only greet first on inbound (console) sessions
+    if not phone_number:
+        await session.generate_reply(instructions=SESSION_INSTRUCTION)
+
 
 if __name__ == "__main__":
-    cli.run_app(
-        WorkerOptions(
-            entrypoint_fnc=entrypoint,
-            agent_name="inbound-agent",
-        )
-    )
+    agents.cli.run_app(WorkerOptions(
+        entrypoint_fnc=entrypoint,
+        agent_name="inbound-agent"
+    ))
