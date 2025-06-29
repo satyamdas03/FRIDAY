@@ -1,7 +1,8 @@
 {
-    "name": "My Inbound Trunk",
-    "numbers": [
-        "+19387772603"
-    ],
-    "krisp_enabled": true
+    "trunk": {
+        "name": "fridayTunk",
+        "numbers": [
+            "+19387772603"
+        ]
+    }
 }
