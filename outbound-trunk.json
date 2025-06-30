@@ -1,0 +1,11 @@
+{
+    "trunk": {
+        "name": "Friday Outbound Trunk",
+        "address": "friday-outbound-trunk.pstn.twilio.com",
+        "numbers": [
+            "+19387772603"
+        ],
+        "auth_username": "fridaynew",
+        "auth_password": "Thomasarthurpolly08#"
+    }
+}
