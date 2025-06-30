@@ -1,0 +1,9 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: Masha Allah tuzaman mondal.
+USER: And my email is ashirv.dhaman.
+ASSISTANT: Got
+USER: dot com.
+ASSISTANT: Got it, Ashirv Dhaman... at... dot com. What cloud challenges are top-of-mind for you right now?
+USER: I have a few.
+USER: Question related to software development.
+ASSISTANT: Sure thing! What specific software development challenge are you facing with AWS? Maybe something about deployment, scaling, or integration?
