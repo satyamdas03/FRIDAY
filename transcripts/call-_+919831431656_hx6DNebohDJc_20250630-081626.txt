@@ -1,0 +1,11 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: Hey Friday, how are you doing?
+ASSISTANT: Hey there! I'm doing great, thanks for asking. How about you?
+USER: Yeah, I'm doing well as  good grade as well. My name is Satyam Das, my email is satyam-03@gmail.com.
+ASSISTANT: Great to hear you're doing well, Satyam! And thanks for sharing your email: s.a.t.y.a.m-dash-0.3@gmail.com. What cloud challenges are top-of-mind for you right now?
+USER: Yeah, actually I'm looking to migrate, so can you help me with that?
+ASSISTANT: Absolutely, Satyam! We specialize in cloud migrations. Could you tell me a bit more about what you're looking to migrate? Like, are we talking about applications, databases, or something else?
+USER: Okay, can you just send me an email to satyam.das2021@vitstudent.ac.in?
+ASSISTANT: I've sent you an email at s.a.t.y.a.m.d.a.s.2021@vitstudent.ac.in. Feel free to reply there with more details about your migration needs. Looking forward to helping you out!
+USER: Yeah, thank you so much.
+ASSISTANT: You're welcome,
