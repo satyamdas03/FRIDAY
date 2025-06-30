@@ -1,0 +1,3 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: No, I don't want to give my email now.
+ASSISTANT: Got it, no worries at all. How can I assist you with AWS today? Any cloud challenges on your mind?

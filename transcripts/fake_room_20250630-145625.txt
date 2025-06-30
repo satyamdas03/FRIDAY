@@ -1,0 +1,51 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My email ID is sobraj@gmail.com and my name is Sobraj Mukherjee.
+ASSISTANT: Great to meet you, Sobraj Mukherjee. So, what's on your mind today? Any cloud challenges you're facing or AWS topics you want to dive into?
+USER: Yeah, I'm facing challenges while working.
+USER: Posting to Windows server for an application.
+USER: Oh, that was very interesting. I would think so.
+ASSISTANT: Gotcha, Sobraj… Deploying applications on a Windows server can have its quirks. Are you running into issues with configuration, scaling, or maybe something
+USER: কবে না বলতে আপনি দেখেন না কিরকম লাগে বলে দিন কিরকম লাগে। So can you suggest me some good
+USER: Windows server other than AWS?
+ASSISTANT: Sure thing, Sobraj. If you're looking beyond AWS for Windows servers, you might consider:
+
+1. **Microsoft Azure** - It's Microsoft's own cloud platform, offering deep integration with Windows services.
+   
+2. **Google Cloud Platform (GCP)** - They offer Windows Server support with various configurations.
+
+3. **IBM Cloud** - Known for its robust enterprise solutions, including Windows servers.
+
+4. **DigitalOcean** - Offers straightforward and cost-effective Windows server hosting.
+
+5. **OVHcloud** - They provide dedicated Windows servers with high customization.
+
+Each of these has its own strengths, so it depends on what you're looking for—like cost, scalability, or specific integrations. Let me know if you need more details on any of these!
+USER: Yeah, I want to go with GCP.
+ASSISTANT: Great choice,
+USER: Ei to.
+USER: এই দেখুন একদম মাপ ডাউন করে সবারই তো এরকম রেসপন্স এসছে না?
+ASSISTANT: Got it, Sobraj. If you're going with Google Cloud Platform (GCP) for your Windows server, you'll find they offer a flexible and powerful environment. GCP provides:
+
+1. **Compute Engine** - You can deploy Windows Server VMs with options for scaling and customization.
+2. **Integrated Services** - Seamless integration with other Google services like BigQuery and Cloud Storage.
+3. **Security** - Strong security features to protect your applications and data.
+
+If you need any specific guidance on setting up a Windows server on GCP, feel free to ask!
+USER: Yeah, it's a million bit coronavirus data.
+USER: ওই তো বলেছিল যে ওই ইসের দাদা। ওকে, গ্রেট।
+USER: So,
+USER: what are the benefits? What are the difference between AWS and GCP in regards to Windows server?
+USER: Idiot, no.
+USER: Simple  before that, he gave a quote in Assam, right?
+ASSISTANT: Alright,
+USER: Yeah, that's the end point to it.
+USER: So we tell ourselves what we want to do.
+ASSISTANT: Got it, Sobraj. When comparing AWS and GCP for Windows servers, here are some key differences and benefits:
+
+1. **Integration**:
+   - **AWS**: Offers deep integration with other AWS services and has a wide range of
+USER: এইটা দেখুন ভেঙে ভেঙে দেখাচ্ছে দেখো। মিলন নন্দী ডেজিগনেশন এটা সুন্দর সাজিয়ে দেখায় কিন্তু।
+ASSISTANT: ঠিক আছে,
+USER: Sandeep Verma, designation started and ended Raju G.
+USER: Okay, thank you.
+ASSISTANT: Okay, thank you, Sobraj. We will talk later.
