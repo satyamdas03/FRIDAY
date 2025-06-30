@@ -1,0 +1,12 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My name is Ritoprata and email address is Ritoprata.
+USER: podcast03@gmail.com.
+ASSISTANT: Got it, Ritoprata... thanks for sharing your email: p o d c a s t zero three @ gmail.com. So, what cloud challenges are top-of-mind for you right now?
+USER: The probable cloud challenges.
+USER: I'm sitting is uh my EC2 instance is
+USER: Morning.
+USER: It's help.
+USER: having server is restarting again and again, what should I do?
+ASSISTANT: Gotcha, Ritoprata. If your EC2 instance is restarting repeatedly, there are a few things to check:
+
+1. **Check System Logs**: Look at the system logs to see if there are any error messages or warnings. You can access these
