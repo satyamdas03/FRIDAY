@@ -31,18 +31,23 @@ class Assistant(agents.Agent):
         )
 
     async def on_enter(self):
-        # fires once the session is live — safe to greet here
         await self.session.generate_reply(instructions=SESSION_INSTRUCTION)
 
 
+
 async def entrypoint(ctx: JobContext):
-    # connect to LiveKit
+    # 1) Connect to LiveKit
     await ctx.connect()
 
-    # if outbound dialing is desired
+    # 2) If TARGET_PHONE_NUMBER is set, make outbound call + dispatch AI
     phone = os.getenv("TARGET_PHONE_NUMBER")
     if phone:
-        await make_call(ctx.room.name, phone)
+        try:
+            await make_call(ctx.room.name, phone)
+        except Exception:
+            # if outbound dialing fails, we still want the worker up,
+            # so just log and continue, or re-raise if you prefer.
+            print("⚠️ outbound dialing failed, check trunk / credentials")
 
     # prepare transcript file
     ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -74,8 +79,7 @@ async def entrypoint(ctx: JobContext):
 
     session.on("session_closed", _on_closed)
 
-    # now start (this blocks until hangup)
-    await session.start(
+    await AgentSession().start(
         agent=Assistant(),
         room=ctx.room,
         room_input_options=RoomInputOptions(
@@ -83,12 +87,11 @@ async def entrypoint(ctx: JobContext):
             noise_cancellation=noise_cancellation.BVCTelephony(),
         ),
     )
-    # no finally needed — we’ll clean up in _on_closed()
 
 if __name__ == "__main__":
     agents.cli.run_app(WorkerOptions(
         entrypoint_fnc=entrypoint,
-        agent_name="inbound-agent",
+        agent_name=os.getenv("AGENT_NAME", "inbound-agent"),
     ))
 
 
