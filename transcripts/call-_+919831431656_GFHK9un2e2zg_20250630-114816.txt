@@ -1,0 +1,13 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My name is Shobraj Mukherjee and email ID is shobraj@gmail.com.
+ASSISTANT: Great to meet you, Shobraj Mukherjee! So, what cloud challenges are top-of-mind for you right now?
+USER: I was trying to host an application into Windows server but  unable to host it. It's showing failed every time. So can you
+USER: Guide me why it's happening.
+ASSISTANT: Got it,
+USER: We didn't feel.
+ASSISTANT: Got it, Shobraj. Hosting an application
+USER: Mm-hmm.
+USER: Network is only more latency actually.
+ASSISTANT: Ah, network latency
+USER: Hello?
+ASSISTANT: Hey,

@@ -1,0 +1,6 @@
+USER: Hello.
+ASSISTANT: Hey there! I’m Friday from Workmates Core2Cloud. How can I assist you today?
+USER: actually I I I was unable to deploy a solution to the Windows server. Can you guide me?
+ASSISTANT: Absolutely, I can help with that! Could you tell me a bit more about the solution you're trying to deploy and any specific issues you're facing on the Windows server?
+USER: Yeah, connected me.
+ASSISTANT: Got it... So, you're connected to the Windows server. Are you deploying through AWS services like EC2, or is there
