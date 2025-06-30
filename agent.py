@@ -1,3 +1,4 @@
+# agent.py
 import os
 import datetime
 from dotenv import load_dotenv
@@ -8,7 +9,6 @@ from livekit.plugins import openai, silero, noise_cancellation, sarvam
 
 from prompts import AGENT_INSTRUCTION, SESSION_INSTRUCTION
 from tools import query_aws_guide, search_web, send_email
-from make_call import make_call
 
 load_dotenv()
 
@@ -31,36 +31,24 @@ class Assistant(agents.Agent):
         )
 
     async def on_enter(self):
+        # fires once the session is live — safe to greet here
         await self.session.generate_reply(instructions=SESSION_INSTRUCTION)
-
 
 
 async def entrypoint(ctx: JobContext):
     # 1) Connect to LiveKit
     await ctx.connect()
 
-    # 2) If TARGET_PHONE_NUMBER is set, make outbound call + dispatch AI
-    phone = os.getenv("TARGET_PHONE_NUMBER")
-    if phone:
-        try:
-            await make_call(ctx.room.name, phone)
-        except Exception:
-            # if outbound dialing fails, we still want the worker up,
-            # so just log and continue, or re-raise if you prefer.
-            print("⚠️ outbound dialing failed, check trunk / credentials")
-
-    # prepare transcript file
+    # 2) Prepare transcript file (no more make_call here)
     ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     os.makedirs("transcripts", exist_ok=True)
     transcript_path = f"transcripts/{ctx.room.name}_{ts}.txt"
     f = open(transcript_path, "a", encoding="utf8")
 
-    # logging helper
+    # 3) Logging helper
     def _log(ev):
-        # never write once closed
         if f.closed:
             return
-
         msg = ev.item  # ChatMessage
         raw = msg.role
         role_str = raw.name.upper() if hasattr(raw, "name") else str(raw).upper()
@@ -71,15 +59,14 @@ async def entrypoint(ctx: JobContext):
     session = AgentSession()
     session.on("conversation_item_added", _log)
 
-    # when LiveKit tells us the session is done, close the file
     def _on_closed(ev):
         if not f.closed:
             f.close()
             print(f"Transcript saved to {transcript_path}")
-
     session.on("session_closed", _on_closed)
 
-    await AgentSession().start(
+    # 4) Start the AI session (blocks until hangup)
+    await session.start(
         agent=Assistant(),
         room=ctx.room,
         room_input_options=RoomInputOptions(
@@ -93,5 +80,3 @@ if __name__ == "__main__":
         entrypoint_fnc=entrypoint,
         agent_name=os.getenv("AGENT_NAME", "inbound-agent"),
     ))
-
-

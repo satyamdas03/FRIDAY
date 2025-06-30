@@ -1,0 +1,26 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My name is Satyam Das, name is Satyam Das irup @gmail.com.
+ASSISTANT: Got it, Satyam Das. Your email is irup at g m a i l dot com.  
+
+What cloud challenges are top-of-mind for you right now?
+USER: Yeah, actually I'm looking to migrate my on-premise servers to AWS. Can you help me with that?
+ASSISTANT: Absolutely, Satyam! Migrating on-premise servers to AWS is one of our specialties. We can help you with a seamless transition.  
+
+To get started, could you share a bit about your current infrastructure? Like, how many servers do you have, and what kind of applications are you running?
+USER: Like 100 servers all over the country.
+ASSISTANT: Gotcha… 100 servers across the country. That's quite a setup!  
+
+We can help you plan a phased migration, ensuring minimal downtime and optimizing costs. We’ll also look into using AWS services like
+USER: Okay, okay, thank you so much.
+USER: Can you tell me something about HTTP B1 HANA?
+ASSISTANT: Hmm... it seems like there might have been a mix-up. The information I got was more about AWS S3 storage rather than HTTP B1 HANA. Could you clarify if you're referring to a
+USER: No, no, I asked about, uh,
+USER: SAP V1 hana.
+ASSISTANT: Got it, you're asking about SAP HANA. SAP HANA is an in-memory, column-oriented, relational database management system developed by SAP. It's designed to handle both high transaction rates and complex query processing
+USER: Okay, okay, thank you so much. Can you send me an email to
+USER: So  satyam.jazz2021@vitstudent.ac.in  based on the conversation we just had.
+USER: It is  in the email addresses satym.das.
+USER: 2021@vitstudent.ac.in.
+ASSISTANT: I've sent the email to satym.das2021@vitstudent.ac.in. If there's anything else you need, just let me know!
+USER: No, no, it's fine. Thank you.
+ASSISTANT: You're welcome, Satyam! If you need anything else
