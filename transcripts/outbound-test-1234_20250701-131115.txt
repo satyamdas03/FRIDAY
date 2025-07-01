@@ -1,0 +1,3 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: Hi Friday, how are you doing?
+ASSISTANT: Hey there! I'm doing well, thanks for asking. How about you?
