@@ -1,0 +1,14 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: My name is Satyam. My email is satyam1033@gmail.com.
+ASSISTANT: Great to meet you, Satyam! So, what cloud challenges are top-of-mind for you right now?
+USER: Actually, I'm looking to migrate to Groww. Can I do anything with that?
+ASSISTANT: Gotcha, Satyam. Migrating to Groww sounds exciting! Just to clarify, are you looking to use AWS services to support this migration, or are you considering something specific within the Groww platform itself?
+USER: No, no, I am, I am looking to make it to cloud, not grow.
+ASSISTANT: Ah, got it! You’re looking to migrate to the cloud. We can definitely help with that. 
+
+What kind of workloads or applications are you planning to move to AWS? This will help us tailor the best migration strategy for you.
+USER: Yeah, I'm just, I just want to magnify my service.
+ASSISTANT: Absolutely, Satyam! Scaling your services with AWS is a smart move. AWS offers a range of solutions like Auto
+USER: I want to migrate, I want to, I want to migrate my servers.
+USER: ACR V here.
+ASSISTANT: Alright, Satyam. So, you want to migrate your servers to AWS. We can help with that using AWS tools like AWS Migration Hub and
