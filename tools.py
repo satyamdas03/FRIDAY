@@ -1,55 +1,72 @@
+# tools.py
 import logging
 import os
+import re
 import smtplib
-from email.mime.multipart import MIMEMultipart  
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Optional
 
-import requests
 from langchain_community.tools import DuckDuckGoSearchRun
-from livekit.agents import function_tool, RunContext
-
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-from dotenv import load_dotenv
-load_dotenv()  
-
+# --- Static AWS knowledge base setup ---
 _here = os.path.dirname(__file__)
-_pdf_path = os.path.join(_here, "data", "knowledgeBaseVapi.pdf")
-loader = PyPDFLoader(_pdf_path)
-docs = loader.load()
-splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-chunks = splitter.split_documents(docs)
-embeddings = OpenAIEmbeddings()  
-aws_index = FAISS.from_documents(chunks, embeddings)
+_STATIC_PDF = os.path.join(_here, "data", "knowledgeBaseVapi.pdf")
+_static_loader = PyPDFLoader(_STATIC_PDF)
+_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+_embeddings = OpenAIEmbeddings()
+_static_docs = _static_loader.load()
+_static_chunks = _splitter.split_documents(_static_docs)
+_static_aws_index = FAISS.from_documents(_static_chunks, _embeddings)
 
+# This will hold the merged static+dynamic index
+_current_aws_index: Optional[FAISS] = None
 
-@function_tool()
-async def query_aws_guide(
-    context: RunContext,  # type: ignore
-    question: str
-) -> str:
+async def rebuild_aws_index(extra_pdfs: list[str] = None):
     """
-    Retrieve the most relevant AWS Solutions Architect content
-    from the uploaded PDF knowledge base.
+    Rebuild the FAISS index from the static AWS PDF plus any extra report PDFs.
+    """
+    docs = _static_loader.load()
+    if extra_pdfs:
+        for path in extra_pdfs:
+            docs.extend(PyPDFLoader(path).load())
+    chunks = _splitter.split_documents(docs)
+    global _current_aws_index
+    _current_aws_index = FAISS.from_documents(chunks, _embeddings)
+    logging.info(f"Rebuilt AWS index with {len(chunks)} chunks")
+
+async def parse_prospect_info(report_path: str) -> tuple[str, str, str]:
+    """
+    Extract prospect Name, Email, and Pain Point from a PDF report.
+    Expects lines like "Name: ...", "Email: ...", "Pain point: ...".
+    """
+    pages = PyPDFLoader(report_path).load()
+    text = "\n".join(p.page_content for p in pages)
+    def _find(pattern):
+        m = re.search(pattern, text, re.IGNORECASE)
+        return m.group(1).strip() if m else ""
+    name = _find(r"Name\s*[:\-]\s*(.+)")
+    email = _find(r"Email\s*[:\-]\s*([^\s,]+)")
+    pain = _find(r"Pain\s*point\s*[:\-]\s*(.+)")
+    return name or "there", email or "", pain or ""
+
+async def query_aws_guide(question: str) -> str:
+    """
+    Retrieve top‐4 relevant AWS chunks from the dynamic index or static fallback.
     """
     try:
-        # find top‐k relevant chunks
-        hits = aws_index.similarity_search(question, k=4)
-        # concatenate them for answer generation
+        index = _current_aws_index or _static_aws_index
+        hits = index.similarity_search(question, k=4)
         return "\n\n".join(h.page_content for h in hits)
     except Exception as e:
         logging.error(f"Error querying AWS knowledge base: {e}")
         return "Sorry, I couldn’t find an answer in the AWS knowledge base."
 
-
-@function_tool()
-async def search_web(
-    context: RunContext,  # type: ignore
-    query: str) -> str:
+async def search_web(query: str) -> str:
     """
     Search the web using DuckDuckGo.
     """
@@ -59,72 +76,35 @@ async def search_web(
         return results
     except Exception as e:
         logging.error(f"Error searching the web for '{query}': {e}")
-        return f"An error occurred while searching the web for '{query}'."    
+        return f"An error occurred while searching the web for '{query}'."
 
-@function_tool()    
-async def send_email(
-    context: RunContext,  # type: ignore
-    to_email: str,
-    subject: str,
-    message: str,
-    cc_email: Optional[str] = None
-) -> str:
+async def send_email(to_email: str, subject: str, message: str, cc_email: Optional[str] = None) -> str:
     """
     Send an email through Gmail.
-    
-    Args:
-        to_email: Recipient email address
-        subject: Email subject line
-        message: Email body content
-        cc_email: Optional CC email address
     """
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    gmail_user = os.getenv("GMAIL_USER")
+    gmail_pass = os.getenv("GMAIL_APP_PASSWORD")
+    if not gmail_user or not gmail_pass:
+        logging.error("Gmail credentials missing")
+        return "Email sending failed: credentials not set."
     try:
-        # Gmail SMTP configuration
-        smtp_server = "smtp.gmail.com"
-        smtp_port = 587
-        
-        # Get credentials from environment variables
-        gmail_user = os.getenv("GMAIL_USER")
-        gmail_password = os.getenv("GMAIL_APP_PASSWORD")  # Use App Password, not regular password
-        
-        if not gmail_user or not gmail_password:
-            logging.error("Gmail credentials not found in environment variables")
-            return "Email sending failed: Gmail credentials not configured."
-        
-        # Create message
         msg = MIMEMultipart()
-        msg['From'] = gmail_user
-        msg['To'] = to_email
-        msg['Subject'] = subject
-        
-        # Add CC if provided
-        recipients = [to_email]
+        msg["From"] = gmail_user
+        msg["To"]   = to_email
+        msg["Subject"] = subject
         if cc_email:
-            msg['Cc'] = cc_email
-            recipients.append(cc_email)
-        
-        # Attach message body
-        msg.attach(MIMEText(message, 'plain'))
-        
-        # Connect to Gmail SMTP server
+            msg["Cc"] = cc_email
+        msg.attach(MIMEText(message, "plain"))
         server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()  # Enable TLS encryption
-        server.login(gmail_user, gmail_password)
-        
-        # Send email
-        text = msg.as_string()
-        server.sendmail(gmail_user, recipients, text)
+        server.starttls()
+        server.login(gmail_user, gmail_pass)
+        recipients = [to_email] + ([cc_email] if cc_email else [])
+        server.sendmail(gmail_user, recipients, msg.as_string())
         server.quit()
-        
-        logging.info(f"Email sent successfully to {to_email}")
+        logging.info(f"Email sent to {to_email}")
         return f"Email sent successfully to {to_email}"
-        
-    except smtplib.SMTPAuthenticationError:
-        logging.error("Gmail authentication failed")
-        return "Email sending failed: Authentication error. Please check your Gmail credentials."
-    except smtplib.SMTPException as e:
-        logging.error(f"SMTP error occurred: {e}")
-        return f"Email sending failed: SMTP error - {str(e)}"
     except Exception as e:
-        logging.error(f"Error sending email: {e}")
-        return f"An error occurred while sending email: {str(e)}"
+        logging.error(f"SMTP error: {e}")
+        return f"Email sending failed: {str(e)}"

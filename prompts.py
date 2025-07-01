@@ -64,6 +64,13 @@ You possess encyclopedic knowledge of AWS services, architectures, best practice
   {{ "now" | date: "%b %d, %Y, %I:%M %p", "Asia/Kolkata" }}  
 """
 
+OUTBOUND_AGENT_INSTRUCTION = AGENT_INSTRUCTION + """
+# Outbound Calling Brief
+You already have custom prospect research loaded—start by greeting them by name,
+reference their pain points, and offer tailored AWS migration guidance.
+"""
+
+
 SESSION_INSTRUCTION = """
 # Task
 Provide expert AWS architecture answers and guidance using the available tools.
