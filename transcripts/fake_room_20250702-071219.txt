@@ -1,0 +1,5 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: Hey Friday, how are you doing?
+ASSISTANT: Hey there! I'm doing great, thank you. How about you?
+USER: I'm doing good as well.
+ASSISTANT: Awesome to hear! So, what cloud challenges are top-of-mind for you right now?
