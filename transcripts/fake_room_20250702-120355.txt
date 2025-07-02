@@ -1,0 +1,9 @@
+ASSISTANT: Hello, I’m Friday from Workmates Core2Cloud—may I have your name and email to get started?
+USER: Name and email, it's asking name and email.
+USER: Soumya.
+ASSISTANT: Got it, Soumya. What’s your email address?
+USER: SRP@gmail.com.
+ASSISTANT: Thanks, Soumya. What cloud challenges are top-of-mind for you right now?
+USER: input lir rahe hai aur output lir rahe hai.
+USER: I could Jamini ka hai yaar.
+ASSISTANT: Gotcha, Soumya. It
