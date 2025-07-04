@@ -1,0 +1,7 @@
+ASSISTANT: Hi Ian Berry, I’m Friday from Workmates Core2Cloud. I understand you're looking to get a solid grip on VPCs and IAM to ace your AWS associate exams. We can definitely help with that! AWS Certification and study courses are a great way to prepare effectively.
+
+Does that sound like something that would address your needs today?
+USER: Yes, it does.
+ASSISTANT: Great! So, let's dive into VPCs and IAM... 
+
+For VPCs, think of them as your own private network within AWS. You can

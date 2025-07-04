@@ -1,0 +1,3 @@
+Name: Satyam Das
+PainPoints: A web application uses an in-memory cache (Redis) extensively. 
+Solutions: using aws for the Solutions

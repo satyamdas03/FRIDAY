@@ -1,0 +1,3 @@
+ASSISTANT: Hi, am I speaking with Ian Berry?
+USER: Yes.
+ASSISTANT: Great! I’m Friday from Workmates Core2Cloud. How can I assist you with your AWS needs today?

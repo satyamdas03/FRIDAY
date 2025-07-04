@@ -1,0 +1,1 @@
+ASSISTANT: Hi Ian Berry, I'm Friday from Workmates Core2Cloud. I understand you're currently facing the challenge of migrating on-premises servers to the cloud. We can definitely help with that using AWS. Does that sound like something that would address your needs today?

@@ -1,0 +1,11 @@
+ASSISTANT: Hi Satyam Das, I'm Friday from Workmates Core2Cloud. I understand you’re currently facing an issue with a web application that uses an in-memory cache (Redis) extensively. Here’s how we can help you right away: by using AWS solutions tailored to your needs.
+
+Does that sound like something that would address your needs today?
+USER: Is it touch?
+ASSISTANT: Are you asking
+USER: Yes.
+ASSISTANT: Gotcha... Are you asking if implementing a solution with AWS for your Redis caching issue will be challenging or "tough"? If so, I can provide some guidance on how we can make it easier. Let me know if that's what you meant!
+USER: Yeah.
+ASSISTANT: Sure thing! Implementing AWS solutions can seem a bit daunting at first, but with the right guidance, it becomes much more manageable. 
+
+For your Redis caching needs, AWS offers Amazon ElastiCache. It's a fully managed service that takes care of the heavy lifting like scaling, patching, and monitoring.

@@ -1,0 +1,5 @@
+ASSISTANT: Hi, am I speaking to Ian Berry?
+USER: Yes, you are.
+ASSISTANT: Great, Ian! I'm Friday from Workmates Core2Cloud. How can I assist you with your AWS needs today?
+USER: Can you tell me my pain points?
+ASSISTANT: Sure thing, Ian! Let's dive into that. What cloud challenges are top-of-mind for you right now? Are you facing issues with cost management, security, scalability, or maybe something else?

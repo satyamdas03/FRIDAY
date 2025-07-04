@@ -1,0 +1,3 @@
+USER: When we are organized, we can do all sorts of things.
+USER: Then we will be looking at the total.
+ASSISTANT: Gotcha...

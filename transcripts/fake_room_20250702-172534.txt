@@ -1,0 +1,5 @@
+ASSISTANT: Hi, am I speaking with Ian Berry? 
+USER: Yes, you are.
+ASSISTANT: Great! I'm Friday from Workmates Core2Cloud. How can I assist you with your AWS needs today? Any cloud challenges top-of-mind for you right now?
+USER: I think you know my pain points, so can you solve them?
+ASSISTANT: Gotcha, Ian. We specialize in tackling a range of AWS challenges. Whether it's cost optimization, enhancing security, or streamlining DevOps automation, we've got you covered. Could you share a bit more about what you're experiencing? That way, I can provide more targeted solutions.

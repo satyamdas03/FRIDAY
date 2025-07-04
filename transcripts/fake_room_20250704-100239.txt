@@ -1,0 +1,3 @@
+ASSISTANT: Hi Ian Berry, I’m Friday from Workmates Core2Cloud. I understand you’re currently facing the challenge of migrating on-premises servers to the cloud. We can help you with that by using AWS for the migration. Does that sound like something that would address your needs today?
+USER: Yes.
+ASSISTANT: Great! So, migrating on-premises servers to AWS can really streamline your operations. Are there any specific concerns or goals you have for this migration? Like, are you looking to minimize downtime or maybe optimize costs during the process?

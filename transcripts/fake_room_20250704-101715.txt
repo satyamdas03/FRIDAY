@@ -1,0 +1,2 @@
+ASSISTANT: Hi Satyam Das, I'm Friday from Workmates Core2Cloud. I understand you're currently facing a challenge with your web application using an in-memory cache, like Redis, extensively. We
+USER: Like we know here.
