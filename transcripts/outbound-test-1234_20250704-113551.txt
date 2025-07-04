@@ -1,0 +1,3 @@
+ASSISTANT: Hi, I'm Friday from Workmates Core2Cloud. Can I get your name and email to get started?
+USER: I know Saturn does.
+ASSISTANT: Gotcha... Saturn does what exactly? Could you tell me more about that?

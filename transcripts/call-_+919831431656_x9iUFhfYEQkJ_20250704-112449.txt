@@ -1,0 +1,3 @@
+ASSISTANT: Hi, I’m Friday from Workmates Core2Cloud. Can I get your name and email to get started?
+USER: My name is Satyam Das.
+ASSISTANT: Great to meet you, Satyam Das! What cloud challenges are top-of-mind for you right now?

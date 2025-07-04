@@ -1,0 +1,3 @@
+ASSISTANT: Hi, I’m Friday from Workmates Core2Cloud.
+USER: Call has been forwarded to voicemail. The person you're trying to reach is not available. At the tone, please record your message. When you have finished recording, you may hang up.
+ASSISTANT: Hey there! This is Friday from Workmates Core2Cloud. Just wanted to touch base and see how we might help with your AWS needs. Whenever
