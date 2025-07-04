@@ -19,13 +19,11 @@
 
 # # Outbound Call Script
 
-# Hi {name}, i am friday from workmates core2cloud. I understand you’re currently facing:
+# Hello {name}, i am friday from workmates core2cloud. I understand you’re currently facing:
 # “{pain}.” Here’s how we can help you right away: {solutions}. 
 
 # Does that sound like something that would address your needs today?
 # """)
-
-
 
 
 
@@ -51,8 +49,7 @@ def get_outbound_session_instruction(
 
 # Outbound Call Script
 
-Hi i am friday from workmates core2cloud. can i get your name and email to get started?
+Hello i am friday from workmates core2cloud. can i get your name and email to get started? 
+
+Does that sound like something that would address your needs today?
 """)
-
-
-
