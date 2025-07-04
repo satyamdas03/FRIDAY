@@ -1,0 +1,1 @@
+ASSISTANT: Hi Satyam Das, I’m Friday from Workmates Core2Cloud. I understand you’re currently facing an issue with a web application using an in-memory cache like Redis extensively. We can definitely help you with AWS solutions
