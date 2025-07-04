@@ -1,0 +1,11 @@
+ASSISTANT: Hello Kamal Nath, I’m Friday from Workmates Core2Cloud. I understand you’re currently facing high cloud costs, slow response times, security vulnerabilities, challenges in cloud migration, and
+USER: Okay, right? Already prompted.
+ASSISTANT: Got
+USER: Yeah, please continue.
+ASSISTANT: Sure thing! Let's dive into each challenge one by one...
+
+1. **High Cloud Costs**: We can help optimize your AWS bill by up to 25% through cost analysis and resource optimization strategies.
+
+2. **Slow Response Times**: By leveraging AWS services like CloudFront and Elastic Load Balancing, we can enhance your application’s performance and responsiveness.
+
+3. **Security Vulnerabilities**: Implementing AWS security best practices,
