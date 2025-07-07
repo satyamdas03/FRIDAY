@@ -1,0 +1,12 @@
+ASSISTANT: Hello Satyam Das, I’m Friday from Workmates Core2Cloud. I understand you’re currently facing challenges with long migration times, high cloud costs, and security concerns. Here’s how we can help you right away: We can streamline your migration processes, reducing time by 30%, implement cost optimization strategies, and offer enhanced managed security services.
+
+Does that sound like something that would address your needs today?
+USER: Can I have the details on
+USER: CCS8 lambda services.
+ASSISTANT: It seems like there might be some confusion with "CCS8 lambda services." Could you provide a bit more context or clarify what you're referring to? Are you looking for details about AWS Lambda or a specific service related to it?
+USER: No, I want to get the information on lambda only.
+USER: Whether it is serverless or not.
+ASSISTANT: AWS Lambda is indeed a serverless compute service. It allows you to run code without provisioning or managing servers. You simply upload your code, and Lambda takes care of everything required to run and scale it with high availability. 
+
+Got any other questions about AWS Lambda or serverless computing?
+USER: No, thank you.
