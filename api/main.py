@@ -1,29 +1,140 @@
+# # api/main.py
+
+# from fastapi import FastAPI, HTTPException
+# from fastapi.middleware.cors import CORSMiddleware
+# from pydantic import BaseModel
+
+# from tools import _query_aws, _search_web, _send_email, _make_call
+# from create_sip_dispatch_rule import create_sip_dispatch_rule
+
+# app = FastAPI(title="Friday Agent API")
+
+# # ─── CORS middleware ────────────────────────────────────────────────────────────
+# # In development you can use ["*"], but in production replace with your frontend URL(s)
+# origins = [
+#     "*",
+# ]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,            # <-- update with specific domains in prod
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+# # ────────────────────────────────────────────────────────────────────────────────
+
+
+# class QueryRequest(BaseModel):
+#     question: str
+
+# @app.post("/aws/query")
+# async def aws_query(req: QueryRequest):
+#     try:
+#         answer = await _query_aws(req.question)
+#         return {"answer": answer}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+# class SearchRequest(BaseModel):
+#     query: str
+
+# @app.post("/search")
+# async def web_search(req: SearchRequest):
+#     try:
+#         results = await _search_web(req.query)
+#         return {"results": results}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+# class EmailRequest(BaseModel):
+#     to: str
+#     subject: str
+#     message: str
+#     cc: str | None = None
+
+# @app.post("/email")
+# async def send_email(req: EmailRequest):
+#     try:
+#         status = await _send_email(req.to, req.subject, req.message, req.cc)
+#         return {"status": status}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+# class CallRequest(BaseModel):
+#     room: str
+#     phone: str
+
+# @app.post("/call")
+# async def dial(req: CallRequest):
+#     try:
+#         await _make_call(req.room, req.phone)
+#         return {"status": "dialing"}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+# class DispatchRuleRequest(BaseModel):
+#     trunk_ids: list[str]
+#     room_prefix: str
+#     agent_name: str
+
+# @app.post("/sip/dispatch-rule")
+# async def sip_dispatch_rule(req: DispatchRuleRequest):
+#     try:
+#         dispatch = await create_sip_dispatch_rule(
+#             req.trunk_ids,
+#             req.room_prefix,
+#             req.agent_name
+#         )
+#         return {"dispatch": dispatch}
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # api/main.py
 
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from tools import _query_aws, _search_web, _send_email, _make_call
 from create_sip_dispatch_rule import create_sip_dispatch_rule
+from api.context import generate_context_for_lead
 
 app = FastAPI(title="Friday Agent API")
 
 # ─── CORS middleware ────────────────────────────────────────────────────────────
-# In development you can use ["*"], but in production replace with your frontend URL(s)
-origins = [
-    "*",
-]
-
+origins = ["*"]  # in prod, lock this down
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,            # <-- update with specific domains in prod
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 # ────────────────────────────────────────────────────────────────────────────────
-
 
 class QueryRequest(BaseModel):
     question: str
@@ -67,9 +178,20 @@ async def send_email(req: EmailRequest):
 class CallRequest(BaseModel):
     room: str
     phone: str
+    lead_id: str   # <-- must pass this now
 
 @app.post("/call")
 async def dial(req: CallRequest):
+    # Step 1: regenerate temp_context.txt or fail
+    try:
+        generate_context_for_lead(req.lead_id)
+    except LookupError:
+        # no research for that lead_id
+        raise HTTPException(status_code=404, detail="Do research bitch")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Context generation failed: {e}")
+
+    # Step 2: place the outbound call
     try:
         await _make_call(req.room, req.phone)
         return {"status": "dialing"}
@@ -93,3 +215,4 @@ async def sip_dispatch_rule(req: DispatchRuleRequest):
         return {"dispatch": dispatch}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
