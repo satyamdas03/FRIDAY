@@ -1,3 +1,3 @@
-Name: Kamal Nath
-PainPoints: High cloud costs, slow response times, security vulnerabilities, challenges in cloud migration, limited customization of services.
-Solutions: Implement cost optimization tools, deploy AI-powered support, enhance managed security services, provide comprehensive migration services, introduce customizable solutions.
+Name: Shradha Khapra
+PainPoints: Scalability of learning platform, manual support and mentorship processes, data management and analytics.
+Solutions: Implement a scalable cloud infrastructure, deploy AI-powered chatbots, utilize a cloud-based data warehouse with integrated BI tools.
