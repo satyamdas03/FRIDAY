@@ -1,12 +1,28 @@
 # api/main.py
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from tools import _query_aws, _search_web, _send_email, _make_call
 from create_sip_dispatch_rule import create_sip_dispatch_rule
 
 app = FastAPI(title="Friday Agent API")
+
+# ─── CORS middleware ────────────────────────────────────────────────────────────
+# In development you can use ["*"], but in production replace with your frontend URL(s)
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,            # <-- update with specific domains in prod
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ────────────────────────────────────────────────────────────────────────────────
 
 
 class QueryRequest(BaseModel):
