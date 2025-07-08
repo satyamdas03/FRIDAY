@@ -288,10 +288,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mongo client + collection for storing call records
+# Mongo client + collections
 mongo = MongoClient(MONGO_URI)
 db = mongo[DB_NAME]
 call_records = db.callRecords
+leads_table   = db.leads
 # ────────────────────────────────────────────────────────────────────────────────
 
 # ─── MODELS ────────────────────────────────────────────────────────────────────
@@ -381,6 +382,12 @@ async def dial(req: CallRequest):
         # transcript/summary/insights to be filled later
     })
 
+    # 4) update that lead's status to "called"
+    leads_table.update_one(
+        {"id": req.lead_id},
+        {"$set": {"status": "called"}}
+    )
+
     return {"status": "dialing"}
 
 
@@ -460,3 +467,4 @@ async def transcript(req: TranscriptRequest):
         insights=insights,
     )
 # ────────────────────────────────────────────────────────────────────────────────
+

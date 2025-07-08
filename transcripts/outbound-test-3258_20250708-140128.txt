@@ -1,0 +1,19 @@
+ASSISTANT: Hello Shovraj Mukherjee, I’m Supriya from Workmates Core2Cloud. I understand you’re currently facing challenges like high AWS costs, unexpected billing, slow customer support response, and complex cloud migration processes. Here's how we can help you right away:
+
+1. Implement AWS Cost Optimization services to help reduce your AWS bill.
+2. Deploy a 24/7 AI-powered support chatbot integrated with your ticketing system for faster responses.
+3. Offer streamlined migration services utilizing automated tools and DevOps practices.
+
+Does that sound like something that would address your needs today?
+USER: I also need new instances to be created on that server.
+ASSISTANT: Got it… You need new instances created on your server. We can definitely help with that. Are you looking to automate the provisioning of these instances, or do you have specific requirements in mind for these new instances?
+USER: No, I want to create it using Terraform.
+ASSISTANT: Absolutely, Terraform is a great choice for provisioning AWS resources. Here's a simple example of how you can create an EC2 instance using Terraform:
+
+```hcl
+provider "aws" {
+  region = "us-west-2"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"  # This is a placeholder;

@@ -1,0 +1,12 @@
+ASSISTANT: Hello Arunava
+USER: Hello.
+ASSISTANT: Hey
+USER: Hello.
+ASSISTANT: Hey there! I'm Friday from Workmates Core2Cloud. How can I assist you today?
+USER: What do you know about me?
+ASSISTANT: I only know what you've shared with me here. So far, just your name, Arunava. If there's anything specific you'd like to discuss or explore, just let me know!
+USER: What are your offerings?
+ASSISTANT: Sure thing, Arunava! At Workmates Core2Cloud, we offer a range of AWS-focused services:
+
+1. **Consulting**: Tailored solutions to fit your business needs.
+2. **Migrations**: Smooth transitions to AWS with

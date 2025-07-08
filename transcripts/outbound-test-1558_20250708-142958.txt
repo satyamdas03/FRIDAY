@@ -1,0 +1,3 @@
+ASSISTANT: Hello Arunava
+USER: Hello.
+ASSISTANT: Hey there! I'm Friday from Workmates Core2Cloud. How's it going today?
