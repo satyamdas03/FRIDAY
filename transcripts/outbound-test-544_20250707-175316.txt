@@ -1,0 +1,8 @@
+ASSISTANT: Hello Satyam Das, I’m Friday from Workmates Core2Cloud. I
+USER: Hello.
+ASSISTANT: Hey there!
+USER: Can you continue, please?
+ASSISTANT: Absolutely! So, Satyam, what cloud challenges are top-of-mind for you right now?
+USER: actually I'm facing some issues with my servers. I actually want to migrate them to cloud.
+USER: They're on premises servers.
+ASSISTANT: Gotcha… Moving from on-premises to the cloud can be a big step. We’ve helped many businesses streamline this process. What kind of servers are you

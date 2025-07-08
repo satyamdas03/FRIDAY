@@ -1,0 +1,5 @@
+ASSISTANT: Hello Satyam Das, I’m Friday from Workmates Core2Cloud. I understand you’re currently facing high cloud migration costs, complexity in cloud management, and security vulnerabilities. Here’s how we can help you right away: We can implement comprehensive cloud cost optimization, offer managed cloud services with 24x7 support, and deploy advanced managed security services.
+
+Does that sound like something that would address your needs today?
+USER: Yes, it does.
+ASSISTANT: Great to hear! We can definitely help streamline your cloud operations and enhance security. Would you like to schedule a detailed discussion or demo to dive deeper into how we can optimize your AWS setup?
