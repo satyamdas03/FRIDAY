@@ -1,4 +1,4 @@
-# ## adding stuff to mongo
+# # call status change to called
 # # api/main.py
 
 # import os
@@ -31,6 +31,7 @@
 # client = MongoClient(MONGODB_URI)
 # db = client[MONGODB_DB]
 # call_records = db.callRecords
+# leads_table   = db.leads
 # # ────────────────────────────────────────────────────────────────────────────────
 
 # app = FastAPI(title="Friday Agent API")
@@ -111,11 +112,17 @@
 
 #     # 3) record this call in MongoDB
 #     call_records.insert_one({
-#         "leadId": req.lead_id,
-#         "room": req.room,
-#         "phone": req.phone,
+#         "leadId":    req.lead_id,
+#         "room":      req.room,
+#         "phone":     req.phone,
 #         "createdAt": datetime.datetime.utcnow()
 #     })
+
+#     # 4) mark the lead as called
+#     leads_table.update_one(
+#         {"id": req.lead_id},
+#         {"$set": {"status": "called"}}
+#     )
 
 #     return {"status": "dialing"}
 # # ────────────────────────────────────────────────────────────────────────────────
@@ -190,10 +197,10 @@
 #     call_records.update_one(
 #         {"room": req.room},
 #         {"$set": {
-#             "transcript": transcript,
-#             "summary": summary,
-#             "insights": insights,
-#             "transcriptSavedAt": datetime.datetime.utcnow()
+#             "transcript":         transcript,
+#             "summary":            summary,
+#             "insights":           insights,
+#             "transcriptSavedAt":  datetime.datetime.utcnow()
 #         }}
 #     )
 
@@ -213,9 +220,7 @@
 
 
 
-
-
-# call status change to called
+# GET API FOR FETCHING TRANSCRIPTS AND STUFF FROM DB
 # api/main.py
 
 import os
@@ -381,7 +386,7 @@ async def get_transcript(req: TranscriptRequest):
         raise HTTPException(status_code=404, detail="No transcript found for that room")
     latest = max(files, key=os.path.getmtime)
 
-    # read the transcript
+    # read transcript
     try:
         transcript = open(latest, encoding="utf8").read()
     except Exception as e:
@@ -389,7 +394,7 @@ async def get_transcript(req: TranscriptRequest):
 
     client = OpenAI(api_key=OPENAI_KEY)
 
-    # generate summary
+    # summary
     sum_resp = client.chat.completions.create(
         model="gpt-4o",
         messages=[
@@ -399,7 +404,7 @@ async def get_transcript(req: TranscriptRequest):
     )
     summary = sum_resp.choices[0].message.content.strip()
 
-    # generate actionable insights
+    # insights
     ins_resp = client.chat.completions.create(
         model="gpt-4o",
         messages=[
@@ -410,21 +415,49 @@ async def get_transcript(req: TranscriptRequest):
     raw_insights = ins_resp.choices[0].message.content.strip()
     insights = [ln.strip() for ln in raw_insights.splitlines() if ln.strip()]
 
-    # update the call record in MongoDB
+    # update the call record
     call_records.update_one(
         {"room": req.room},
         {"$set": {
-            "transcript":         transcript,
-            "summary":            summary,
-            "insights":           insights,
-            "transcriptSavedAt":  datetime.datetime.utcnow()
+            "transcript":        transcript,
+            "summary":           summary,
+            "insights":          insights,
+            "transcriptSavedAt": datetime.datetime.utcnow()
         }}
     )
 
-    return {
-        "transcript": transcript,
-        "summary":    summary,
-        "insights":   insights
-    }
+    return {"transcript": transcript, "summary": summary, "insights": insights}
 # ────────────────────────────────────────────────────────────────────────────────
+
+# ─── NEW: GET call-record by lead_id ────────────────────────────────────────────
+class CallRecordResponse(BaseModel):
+    leadId: str
+    room: str
+    phone: str
+    createdAt: datetime.datetime
+    transcript: str | None = None
+    summary: str | None = None
+    insights: list[str] | None = None
+
+@app.get("/call/{lead_id}", response_model=CallRecordResponse)
+async def fetch_call_record(lead_id: str):
+    # find the latest call record for this lead
+    rec = call_records.find_one(
+        {"leadId": lead_id},
+        sort=[("createdAt", -1)]
+    )
+    if not rec:
+        raise HTTPException(status_code=404, detail="No call record found for that lead_id")
+
+    return CallRecordResponse(
+        leadId=rec["leadId"],
+        room=rec["room"],
+        phone=rec["phone"],
+        createdAt=rec["createdAt"],
+        transcript=rec.get("transcript"),
+        summary=rec.get("summary"),
+        insights=rec.get("insights", []),
+    )
+# ────────────────────────────────────────────────────────────────────────────────
+
 
