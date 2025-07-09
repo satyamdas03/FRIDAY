@@ -1,0 +1,1 @@
+ASSISTANT: Hello Shradha Khapra, I'm Supriya from Workmates Core2Cloud. I understand you're currently facing challenges with scalability of your learning platform, manual support and mentorship processes, and data management and analytics. Here's how we can help: we can implement a scalable cloud infrastructure, deploy

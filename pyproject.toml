@@ -32,6 +32,8 @@ pypdf2 = "^3.0.1"
 pymongo = "^4.13.2"
 beautifulsoup4 = "^4.13.4"
 lxml = "^6.0.0"
+livekit-plugins-cartesia = "^1.1.5"
+livekit-plugins-turn-detector = "^1.1.5"
 
 
 [build-system]

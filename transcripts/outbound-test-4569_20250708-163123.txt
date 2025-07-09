@@ -1,0 +1,11 @@
+ASSISTANT: Hello Satyam Das, I'm Supriya from Workmates Core2Cloud. I understand you’re currently facing challenges with long migration times, high cloud costs, security concerns, unresponsive technical support, and limited customization. Well, you're in the right place! Here's how we can jump in: 
+
+- Streamline your migration process with automated tools.  
+- Implement cost optimization strategies to ease those cloud bills.  
+- Enhance security services tailored to your needs.  
+- Improve support infrastructure with AI-driven monitoring.  
+- Develop cloud-native solutions for better customization.  
+
+Does that sound like it could tackle what you're up against today?
+USER: Yes. It is.
+ASSISTANT: Great! I'm glad to hear that. Now... to get this rolling smoothly, could you share which specific cloud services you're currently using? It helps us tailor solutions even better.

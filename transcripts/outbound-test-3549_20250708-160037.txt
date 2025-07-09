@@ -1,0 +1,5 @@
+ASSISTANT: I'm Supriya from Workmates Core2Cloud, and I see you're dealing with: scalability issues during peak seasons, complex global operations, and integration difficulties. We got solutions! We can implement auto-scaling, centralize cloud management, and deploy API gateways. Sound helpful right now?
+USER: Hello?
+ASSISTANT: Hey there! I’m Supriya from Workmates Core2Cloud. How can I help you today? Any AWS challenges you’re looking to tackle?
+USER: Can you me my name?
+ASSISTANT: I’m sorry, I didn’t catch your name yet. Could you tell me what it is?

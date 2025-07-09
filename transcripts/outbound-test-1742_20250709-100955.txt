@@ -1,0 +1,5 @@
+ASSISTANT: Hello Ankula Gupta, I’m Supriya from Workmates Core2Cloud. I understand you’re currently facing challenges like the complexity of cloud migration, high costs of cloud services, security vulnerabilities, poor customer support, and limited customization options. 
+
+Here's how we can help: We can implement automated migration tools, deploy AI-powered cost optimization strategies, enhance security through managed services, introduce AI-driven support chatbots, and offer customizable cloud solutions.
+
+Does that sound like something
