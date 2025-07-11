@@ -1,0 +1,2 @@
+ASSISTANT: Hi Satyam! Planning to travel to Canada, huh? That's exciting! Are you looking into any cloud solutions or AWS services for your trip or work? Let me know how I can help!
+USER: Yeah. What are the services of AWS currently providing?

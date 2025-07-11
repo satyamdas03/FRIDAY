@@ -1,3 +1,3 @@
-Name: Shovraj Mukherjee
-PainPoints: High AWS cost management complexity, delayed project deliveries, limited customization in managed services
-Solutions: Implement AI-driven cost optimization, adopt DevOps automation tools, develop flexible service architecture with AI-driven tools
+Name: Ankula Gupta
+PainPoints: Complexity of Cloud Migration, High Costs of Cloud Services, Security Vulnerabilities
+Solutions: Implement automated migration tools, deploy AI-powered cost optimization strategies, enhance security through managed security services

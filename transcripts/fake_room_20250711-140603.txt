@@ -1,0 +1,5 @@
+USER: Let's begin.
+USER: Is there a option for
+USER: repeating the Can you describe a complex react project you've worked
+USER: on in your previous role and how you manage state and component life cycle?
+ASSISTANT: I’m Supriya from Workmates Core2Cloud… and I focus on AWS

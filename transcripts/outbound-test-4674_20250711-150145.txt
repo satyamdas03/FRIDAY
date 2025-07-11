@@ -1,0 +1,5 @@
+ASSISTANT: Hello Ankula Gupta, I'm Supriya from Workmates Core2Cloud. I understand you're currently dealing with the complexity of cloud migration, high costs of cloud services, and security vulnerabilities. Here's how we can help you right away: We can implement automated migration tools, deploy AI-powered cost optimization strategies, and enhance security through our managed security
+USER: Can you tell me  can you tell me something about work in its course of clouds?
+ASSISTANT: Sure thing! At Workmates Core2Cloud, we're all about making cloud journeys smoother and more efficient. We're an AWS Premier Tier Services Partner, which means we're recognized for our expertise in AWS solutions. 
+
+We offer a range of services, like consulting to help you plan your cloud strategy, migrations to move your workloads to AWS seamlessly, and DevOps automation to streamline
