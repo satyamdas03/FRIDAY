@@ -1,0 +1,16 @@
+ASSISTANT: Hello Ankula Gupta, I’m Supriya from Workmates Core2Cloud. I understand you’re currently facing challenges with the complexity of cloud migration, high costs of cloud services, and security
+USER: Hey, can you tell me something about SAP T1, huh?
+ASSISTANT: Sure thing! SAP T1 on AWS is a specialized instance type designed to support SAP workloads. It provides the necessary compute, memory, and storage resources to efficiently run SAP applications on the cloud. 
+
+AWS offers a range of instance types optimized for different SAP workloads, like SAP HANA or SAP NetWeaver, ensuring high availability and scalability. With SAP T1, you can benefit from AWS's robust infrastructure, which includes features like automated backups, disaster recovery, and enhanced security.
+
+Are you considering running SAP on AWS, or do you have specific questions about it?
+USER: actually I want to do profiling of my leads during using some AWS services.
+USER: AWS AI services to be exact. So, uh,
+ASSISTANT: Gotcha… Profiling leads using AWS AI services can be super effective! AWS offers several services that can help with this:
+
+1. **Amazon Comprehend**: This service can analyze text data to extract insights like sentiment, key phrases, and entities. It’s great for understanding customer feedback or social media sentiment.
+
+2. **Amazon Personalize**: You can use this to create personalized recommendations for your leads based on their behavior and preferences. It’s similar to what’s used by Amazon.com for product recommendations.
+
+3. **Amazon SageMaker**: If you want to build custom machine learning models for profiling, SageMaker is

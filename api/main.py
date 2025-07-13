@@ -219,3 +219,253 @@ async def transcript(req: TranscriptRequest):
     )
 # ────────────────────────────────────────────────────────────────────────────────
 
+
+
+
+
+
+
+
+
+# ## for the console api
+# import os
+# import glob
+# import datetime
+# from pathlib import Path
+
+# from fastapi import FastAPI, HTTPException
+# from fastapi.middleware.cors import CORSMiddleware
+# from pydantic import BaseModel
+# from pymongo import MongoClient
+# from openai import OpenAI
+# from dotenv import load_dotenv
+
+# from tools import _query_aws, _search_web, _send_email, _make_call
+# from create_sip_dispatch_rule import create_sip_dispatch_rule
+# from api.context import generate_context_for_lead
+# from agent import console_chat  # new import
+
+# # ─── CONFIG ────────────────────────────────────────────────────────────────────
+# load_dotenv()
+# OPENAI_KEY = os.getenv("OPENAI_API_KEY")
+# if not OPENAI_KEY:
+#     raise RuntimeError("Missing OPENAI_API_KEY in env")
+# MONGO_URI = os.getenv("MONGODB_URI")
+# if not MONGO_URI:
+#     raise RuntimeError("Missing MONGODB_URI in env")
+# DB_NAME = os.getenv("DB_NAME", "test")
+# # ────────────────────────────────────────────────────────────────────────────────
+
+# # ─── SETUP ─────────────────────────────────────────────────────────────────────
+# app = FastAPI(title="Friday Agent API")
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # lock down in prod
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# # Mongo client + collections
+# mongo = MongoClient(MONGO_URI)
+# db = mongo[DB_NAME]
+# call_records = db.callRecords
+# leads_table = db.leads
+# # ────────────────────────────────────────────────────────────────────────────────
+
+# # ─── MODELS ────────────────────────────────────────────────────────────────────
+# class QueryRequest(BaseModel):
+#     question: str
+
+# class SearchRequest(BaseModel):
+#     query: str
+
+# class EmailRequest(BaseModel):
+#     to: str
+#     subject: str
+#     message: str
+#     cc: str | None = None
+
+# class CallRequest(BaseModel):
+#     room: str
+#     phone: str
+#     lead_id: str
+
+# class TranscriptRequest(BaseModel):
+#     lead_id: str
+
+# class TranscriptResponse(BaseModel):
+#     lead_id: str
+#     room: str
+#     phone: str
+#     createdAt: datetime.datetime
+#     transcript: str
+#     summary: str
+#     insights: list[str]
+
+# class ConsoleRequest(BaseModel):
+#     lead_id: str
+#     message: str
+
+# class ConsoleResponse(BaseModel):
+#     reply: str
+# # ────────────────────────────────────────────────────────────────────────────────
+
+# # ─── ROUTES ────────────────────────────────────────────────────────────────────
+# @app.post("/aws/query")
+# async def aws_query(req: QueryRequest):
+#     try:
+#         return {"answer": await _query_aws(req.question)}
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+
+# @app.post("/search")
+# async def web_search(req: SearchRequest):
+#     try:
+#         return {"results": await _search_web(req.query)}
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+
+# @app.post("/email")
+# async def send_email(req: EmailRequest):
+#     try:
+#         return {"status": await _send_email(req.to, req.subject, req.message, req.cc)}
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+
+# @app.post("/sip/dispatch-rule")
+# async def sip_dispatch_rule(req: CallRequest):
+#     try:
+#         dispatch = await create_sip_dispatch_rule(req.trunk_ids, req.room_prefix, req.agent_name)
+#         return {"dispatch": dispatch}
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+
+
+# @app.post("/call")
+# async def dial(req: CallRequest):
+#     # 1) regenerate context or fail
+#     try:
+#         generate_context_for_lead(req.lead_id)
+#     except LookupError:
+#         raise HTTPException(404, "Do research bitch")
+#     except Exception as e:
+#         raise HTTPException(500, f"Context generation failed: {e}")
+
+#     # 2) dispatch AI agent and dial out
+#     try:
+#         await _make_call(req.room, req.phone)
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+
+#     # 3) record the call in Mongo
+#     call_records.insert_one({
+#         "leadId":    req.lead_id,
+#         "room":      req.room,
+#         "phone":     req.phone,
+#         "createdAt": datetime.datetime.utcnow(),
+#     })
+
+#     # 4) update that lead's status to "called"
+#     leads_table.update_one(
+#         {"id": req.lead_id},
+#         {"$set": {"status": "called"}}
+#     )
+
+#     return {"status": "dialing"}
+
+
+# @app.post("/transcript", response_model=TranscriptResponse)
+# async def transcript(req: TranscriptRequest):
+#     # fetch the latest call record for this lead
+#     rec = call_records.find_one(
+#         {"leadId": req.lead_id},
+#         sort=[("createdAt", -1)]
+#     )
+#     if not rec:
+#         raise HTTPException(404, "No call record found for that lead_id")
+
+#     # if already summarized, return immediately
+#     if rec.get("transcript") and rec.get("summary") and rec.get("insights"):
+#         return TranscriptResponse(
+#             lead_id=rec["leadId"],
+#             room=rec["room"],
+#             phone=rec["phone"],
+#             createdAt=rec["createdAt"],
+#             transcript=rec["transcript"],
+#             summary=rec["summary"],
+#             insights=rec["insights"],
+#         )
+
+#     # else, load raw transcript file
+#     pattern = f"transcripts/{rec['room']}_*.txt"
+#     files = glob.glob(pattern)
+#     if not files:
+#         raise HTTPException(404, "Transcript file not found")
+#     latest_file = max(files, key=os.path.getmtime)
+#     try:
+#         raw_transcript = Path(latest_file).read_text(encoding="utf8")
+#     except Exception as e:
+#         raise HTTPException(500, f"Failed to read transcript file: {e}")
+
+#     client = OpenAI(api_key=OPENAI_KEY)
+
+#     # 1) summarize
+#     sum_resp = client.chat.completions.create(
+#         model="gpt-4o",
+#         messages=[
+#             {"role":"system","content":"You are a helpful assistant."},
+#             {"role":"user","content":f"Please summarize this call transcript in a few sentences:\n\n{raw_transcript}"}
+#         ]
+#     )
+#     summary = sum_resp.choices[0].message.content.strip()
+
+#     # 2) extract actionable insights
+#     ins_resp = client.chat.completions.create(
+#         model="gpt-4o",
+#         messages=[
+#             {"role":"system","content":"You are a helpful assistant."},
+#             {"role":"user","content":f"From the transcript below, list three actionable insights:\n\n{raw_transcript}"}
+#         ]
+#     )
+#     insights_raw = ins_resp.choices[0].message.content.strip()
+#     insights = [line.strip() for line in insights_raw.splitlines() if line.strip()]
+
+#     # 3) persist back to Mongo
+#     call_records.update_one(
+#         {"_id": rec["_id"]},
+#         {"$set": {
+#             "transcript": raw_transcript,
+#             "summary": summary,
+#             "insights": insights
+#         }}
+#     )
+
+#     return TranscriptResponse(
+#         lead_id=rec["leadId"],
+#         room=rec["room"],
+#         phone=rec["phone"],
+#         createdAt=rec["createdAt"],
+#         transcript=raw_transcript,
+#         summary=summary,
+#         insights=insights,
+#     )
+
+
+# @app.post("/console", response_model=ConsoleResponse)
+# async def console_endpoint(req: ConsoleRequest):
+#     """
+#     A text‐based “console” chat endpoint.
+#     Pass lead_id + a user message, get Friday’s reply.
+#     """
+#     try:
+#         reply = await console_chat(req.message, req.lead_id)
+#         return {"reply": reply}
+#     except LookupError:
+#         raise HTTPException(404, "Do research bitch")
+#     except Exception as e:
+#         raise HTTPException(500, str(e))
+# # ────────────────────────────────────────────────────────────────────────────────
+
+
