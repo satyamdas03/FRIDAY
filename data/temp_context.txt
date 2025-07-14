@@ -1,3 +1,0 @@
-Name: Ankula Gupta
-PainPoints: Complexity of Cloud Migration, High Costs of Cloud Services, Security Vulnerabilities
-Solutions: Implement automated migration tools, deploy AI-powered cost optimization strategies, enhance security through managed security services
