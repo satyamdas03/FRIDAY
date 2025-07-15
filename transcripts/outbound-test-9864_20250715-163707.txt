@@ -1,0 +1,9 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud, how can I help you today?
+USER: Yeah, actually, uh,
+USER: I have some.
+USER: I want to migrate to the cloud.
+ASSISTANT: Gotcha... You're thinking about migrating to the cloud. What specific challenges or goals do you have in mind for this migration?
+USER: Uh, actually I have a lot of boundary matches serviced.
+ASSISTANT: Ah, I see. You have a lot of on-premises services. Are you looking for a specific strategy to migrate these services to AWS, or do you have any particular requirements in mind?
+USER: actually I don't have any idea about the cloud so I need your help with that completely.
+ASSISTANT: Absolutely, I can guide you through the process! Migrating to the cloud can bring a lot of benefits like cost savings, scalability, and improved performance. We can start with an assessment of your current infrastructure and then plan a phased migration to AWS. How does that sound?
