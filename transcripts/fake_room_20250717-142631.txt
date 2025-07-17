@@ -1,0 +1,15 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud. How can I help you today?
+USER: Actually, I have
+USER: I want to know about SAP B1 Hana.
+ASSISTANT: Gotcha… SAP B1 on HANA is pretty interesting! It's a version of SAP Business One that runs on the SAP HANA database. This setup provides real-time analytics and high-speed transactions, which is great for businesses that need quick insights.
+
+Are you looking to run SAP B1 on AWS, or do you have specific questions about its architecture or performance?
+USER: Actually, I have, uh, I have.
+USER: I want to, I have on-premise data.
+USER: I have one page server which I want to migrate to the cloud.
+USER: And I need help with that.
+ASSISTANT: Got it! You want to migrate your on-premise data and server to the cloud. We can definitely help with that. 
+
+Our team specializes in cloud migrations, ensuring a smooth and efficient transition. We can assist with setting up your AWS environment, migrating your data, and optimizing your infrastructure for performance and cost.
+
+What’s your primary goal for this migration? Are you looking for scalability, cost savings, or maybe better performance?
