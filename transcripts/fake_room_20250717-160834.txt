@@ -1,0 +1,7 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud. How can I help you today?
+USER: I have on premises service attached to my GitHub cloud. How can you help me?
+ASSISTANT: Gotcha... You're working with an on-premises service connected to GitHub Cloud. Let's explore how we can assist you with that. Are you
+USER: I know, I want to, I want to migrate it up here.
+ASSISTANT: Absolutely, migrating your on-premises service to the cloud can bring a lot of benefits, like scalability and cost efficiency. To get started, could you share what specific challenges or goals you're looking to address with this migration? This will help us tailor the best solution for you.
+USER: Static regime facing is too much of load on the server.
+ASSISTANT: Got it... You're dealing with heavy loads on your static regime. We can help you migrate to AWS, where you can leverage services like Amazon S3 for static content and Amazon CloudFront for content delivery. This setup can significantly

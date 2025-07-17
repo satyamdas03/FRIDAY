@@ -17,6 +17,7 @@ from api.context import generate_context_for_lead
 
 # 🆕 New Import
 from livekit.api.access_token import AccessToken, VideoGrants 
+from livekit import api as livekit_api
 
 # ─── CONFIG ────────────────────────────────────────────────────────────────────
 load_dotenv()
@@ -207,15 +208,45 @@ async def transcript(req: TranscriptRequest):
     )
 
 # ─── 🆕 New LiveKit Token Route ────────────────────────────────────────────────
+# @app.get("/get-livekit-token")
+# async def get_livekit_token(identity: str = Query(...), room: str = Query(...)):
+#     try:
+#         api_key = os.getenv("LIVEKIT_API_KEY")
+#         api_secret = os.getenv("LIVEKIT_API_SECRET")
+#         if not api_key or not api_secret:
+#             raise HTTPException(500, detail="Missing LiveKit API credentials.")
+
+#         # Build token
+#         token = (
+#             AccessToken(api_key=api_key, api_secret=api_secret)
+#             .with_identity(identity)
+#             .with_name(identity)
+#             .with_grants(VideoGrants(
+#                 room_join=True,
+#                 room=room,
+#                 can_publish=True,
+#                 can_subscribe=True,
+#             ))
+#         )
+#         jwt = token.to_jwt()
+#         return {"token": jwt}
+
+#     except Exception as e:
+#         print("🔴 LiveKit token error:", e)
+#         raise HTTPException(500, detail=str(e))
+
+
 @app.get("/get-livekit-token")
 async def get_livekit_token(identity: str = Query(...), room: str = Query(...)):
     try:
         api_key = os.getenv("LIVEKIT_API_KEY")
         api_secret = os.getenv("LIVEKIT_API_SECRET")
-        if not api_key or not api_secret:
-            raise HTTPException(500, detail="Missing LiveKit API credentials.")
+        agent_name = os.getenv("AGENT_NAME", "inbound-agent")
 
-        # Build token
+        if not api_key or not api_secret:
+            raise HTTPException(500, detail="LiveKit API credentials not set.")
+
+        # 1. Create access token for browser user
         token = (
             AccessToken(api_key=api_key, api_secret=api_secret)
             .with_identity(identity)
@@ -224,13 +255,27 @@ async def get_livekit_token(identity: str = Query(...), room: str = Query(...)):
                 room_join=True,
                 room=room,
                 can_publish=True,
-                can_subscribe=True,
+                can_subscribe=True
             ))
         )
+
         jwt = token.to_jwt()
+
+        # 2. Dispatch the AI agent into the room
+        lkapi = livekit_api.LiveKitAPI()
+        await lkapi.agent_dispatch.create_dispatch(
+            livekit_api.CreateAgentDispatchRequest(
+                agent_name=agent_name,
+                room=room,
+                metadata=identity
+            )
+        )
+        await lkapi.aclose()
+
+        # 3. Return the token to the client
         return {"token": jwt}
 
     except Exception as e:
-        print("🔴 LiveKit token error:", e)
+        print("🔴 Failed to issue token or dispatch agent:", e)
         raise HTTPException(500, detail=str(e))
 
