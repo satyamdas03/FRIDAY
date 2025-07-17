@@ -1,3 +1,3 @@
-Name: Ankula Gupta
-PainPoints: Complexity of Cloud Migration; High Costs of Cloud Services; Security Vulnerabilities
-Solutions: Implement automated migration tools; Deploy AI-powered cost optimization strategies; Enhance security through managed security services.
+Name: Basanta Kumar Rana
+PainPoints: Delayed project delivery, high cloud costs, poor communication and support, complex migration processes, insufficient security measures
+Solutions: Implement AI-driven project management tools, deploy cloud cost optimization tools, establish AI-powered chatbots, utilize automated migration tools, implement advanced AI-driven security solutions.

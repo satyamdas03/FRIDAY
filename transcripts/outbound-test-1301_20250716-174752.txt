@@ -1,0 +1,51 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud. How can I help you today?
+USER: Uh, actually, uh,
+USER: Uh, we are a small and medium customer.
+USER: We are looking for a backup solution.  to aapke paas koi backup solution hai?
+ASSISTANT: Bilkul! Hum AWS pe bohot effective backup solutions offer karte hain. AWS Backup ek centralized service hai jo aapko automate aur manage karne mein madad karti hai. Ye solution aapki data durability aur compliance ensure karta hai.
+
+Aapke current infrastructure ke liye kya specific requirements hain? Jaise ki, aap kitne frequently backups lena chahte hain ya koi particular compliance standards follow kar rahe hain? 
+USER: To mere paas kya hai na, char TV ka data hai.
+USER: To ye mera MSSQL database ka hai.
+USER: But mein chahta hu ki mera jo database server hai, udhar se direct
+USER: Backup chala chahiye. So do you have any solution like this?
+ASSISTANT: Gotcha! Aapka jo scenario hai, uske liye AWS Backup ke saath RDS aur aur Amazon EC2 pe running MSSQL instances ka direct backup le sakte hain. Ye service aapko automate aur schedule karne ki flexibility deti hai, taaki aap apne data ko efficiently manage kar sakein.
+
+AWS Backup ke through, aap apne MSSQL database ka consistent snapshot le sakte hain aur usse long-term storage ke liye Amazon S3 ya Glacier pe store kar sakte hain. Is tarah se aapka data secure aur easily retrievable rahega.
+
+Kya aap is setup ke liye aur details ya assistance chahte hain? Hum aapko step-by-step implementation mein help kar sakte hain.
+USER: To main janna chahata hu ki iske liye aap kuch  script vagaira likhte hain ya aap koi tool use karte hain backup ke liye.
+ASSISTANT: Sure thing! AWS Backup ek built-in tool hai jo aapko GUI ke through ya AWS CLI commands se manage karne ki facility deta hai. Iske liye aapko custom scripts likhne ki zarurat nahi hai, lekin agar aap automation chahte hain, toh AWS CLI ya SDKs ka use karke automation scripts create kar sakte hain.
+
+AWS Backup policies set karne mein madad karta hai, jisse aap schedule aur retention policies define kar sakte hain. Agar aap automation scripts ka use karna chahte hain, toh AWS CLI commands ka use karke aap backup operations automate kar sakte hain.
+
+Aapko scripting ya automation mein help chahiye toh main aapko kuch example scripts ya commands bhi provide kar sakta hoon. Interested?
+USER: Nahi, thank you. But mein janna chahta hu ki aapka yeh jo company hai, kitna purana company hai, aapka kya kya services hai, aapka AWS ka partnership level kya hai?
+USER: toh iske bare mein bhi thoda jankari agar denge toh aasaan hoga.
+ASSISTANT: Absolutely! Workmates Core2Cloud ek AWS Premier Tier Services Partner hai, jo ki AWS ke highest partnership levels mein se ek hai. Humari company kaafi saalon se cloud solutions provide kar rahi hai, aur hum specialized hain consulting, migrations, DevOps automation, cost optimization, security, aur AI mein.
+
+Humare experts aapko cloud adoption ke har phase mein support karte hain, chahe woh initial migration ho ya ongoing optimization. AWS ke saath humara partnership level ensure karta hai ki hum aapko latest AWS technologies aur best practices ke saath service provide karte hain.
+
+Aapko koi specific service ya assistance chahiye? Main aapki madad kar sakta hoon!
+USER: Aap ek kaam kariyai aap ka sales ya technical team ke saath.
+USER: Mera ek appointment fix kar lijiye.
+ASSISTANT: Bilkul! Main aapka appointment fix karne mein madad karta hoon. Aap mujhe apna naam, email address aur aapke liye convenient time bata sakte hain? Main details share kar dunga taaki hamari sales ya technical team aap se contact kar sake.
+USER: So mera naam hai Basanta Kumar Rana.
+USER: Aur mera email ID hai rana.basant@gmail.com.
+ASSISTANT: Great, Basanta Kumar Rana. Aur kya aapko koi specific din aur time prefer karenge appointment ke liye? Main aapke liye best available slot
+USER: Mujhe 17 tarikh
+USER: Mujhe 17 July.
+USER: Shaam ko 4:00 mere appointment switch kar lenge.
+ASSISTANT: Got it, Basanta Kumar Rana. Main aapka appointment 17 July, shaam 4:00 baje schedule kar raha hoon. Main details aapke email ID, r.a.n.a dot b.a.s.a.n.t at gmail dot com pe share kar dunga. 
+
+Kuch aur madad chahiye toh zaroor batayein!
+USER: Aap mere saath English mein baat kar sakte hain?
+ASSISTANT: Absolutely! I can switch to English. Your appointment is set for July 17th at 4:00 PM. I’ll send the details to your email, r.a.n.a dot b.a.s.a.n.t at gmail dot com. 
+
+If there’s anything else you need, feel
+USER: Dui no dui no mahima gar.
+USER: AWS digital head.
+ASSISTANT: I’m sorry, I’m not authorized to disclose that information. Is there anything else I can help you with regarding AWS services or solutions?
+USER: Thank you very much. It was great talking to you.
+USER: We see a nice day.
+ASSISTANT: You're welcome! It was great talking to you too. Have a wonderful day! If you need anything else, feel free to reach out.
