@@ -1,0 +1,20 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud. How can I help you today?
+USER: Hey Supriya, how are you?
+ASSISTANT: Hey there! I'm doing great, thanks for asking. How about you? Anything specific on your mind regarding AWS or cloud solutions today?
+USER: Yeah, actually I was thinking of migrating to the cloud.
+ASSISTANT: Gotcha... Cloud migration is a big step! What are the main goals you're hoping to achieve with this migration? Maybe cost savings, scalability, or something else?
+USER: Yeah, both of those.
+ASSISTANT: Absolutely, those are great goals. With cloud migration, we can definitely help you achieve cost savings and scalability. We can typically cut your AWS bill by around 25% and scale your resources dynamically based on demand.
+
+Do you have any current infrastructure details you'd like to share, or specific questions on how we can assist with the migration?
+USER: Next slide, I would like to know about recipe B1 Hana implementation part three.
+USER: Details, please.
+ASSISTANT: Sure thing! Implementing SAP HANA on AWS, particularly using the B1 recipe, involves several key steps to ensure a smooth transition and optimal performance. Here's a high-level overview:
+
+1. **Planning and Assessment**:  
+   - Analyze your current SAP environment.
+   - Define the architecture and sizing requirements based on your workload.
+   - Plan for network connectivity and security.
+
+2. **AWS Environment Setup**:  
+   - Create a Virtual Private Cloud (VPC) with subnets for different tiers (public and
