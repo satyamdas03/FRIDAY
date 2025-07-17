@@ -1,0 +1,13 @@
+ASSISTANT: Hello, I am Supriya from Workmates Core2Cloud. How can I help you today?
+USER: Hello.
+ASSISTANT: Hey there! What’s on your mind today? Anything specific you’re looking to explore with AWS?
+USER: Uh, you know, I'm going to migrate actually to the cloud.
+ASSISTANT: Gotcha... Migrating to the cloud is a big step! What are the main goals for your migration? Are you looking at cost savings, scalability, or maybe improving performance?
+USER: B1 on our internal system.
+ASSISTANT: Ah, got it. Migrating an internal system like B1 to the cloud can really streamline operations. Are you considering any specific AWS services for this migration, or do you need some guidance on the best options?
+USER: And come again here.
+ASSISTANT: Sure thing! So, are you looking for guidance on which AWS services would be best for migrating your B1 system? Or do you have specific services in mind already?
+USER: I want.
+ASSISTANT: Alright! For migrating your B1 system, you might want to consider using AWS services like **EC2** for compute power, **RDS** for database needs, and **S3** for storage. These services are scalable and reliable, which is great for an internal system migration. 
+
+Would you like more details on any of these services or how they can be set up for your migration?
